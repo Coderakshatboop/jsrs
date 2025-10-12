@@ -1,0 +1,121 @@
+<!doctype html>
+<!-- Integrated saffron & white login + volunteer profile page
+     Password: 202509
+     Title: Jay Sanatan Rashtraseva Sanghatan (JARS)
+-->
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jay Sanatan Rashtraseva Sanghatan (JARS)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+    body { font-family: 'Inter', sans-serif; background-color: #fffaf0; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6 bg-white">
+  <!-- Login Card -->
+  <main id="loginCard" class="bg-white border-t-8 border-amber-600 shadow-2xl rounded-xl p-8 w-full max-w-sm text-center">
+    <h1 class="text-2xl font-bold text-amber-700 mb-4 uppercase">Jay Sanatan Rashtraseva Sanghatan (JARS)</h1>
+    <form id="loginForm" autocomplete="off" novalidate class="space-y-4">
+      <div>
+        <label for="password" class="block text-sm font-semibold text-gray-600 mb-1">Enter Password</label>
+        <input id="password" type="password" class="w-full border border-gray-300 rounded-lg p-2 text-center focus:outline-none focus:ring-2 focus:ring-amber-500" placeholder="Enter Password" required />
+      </div>
+      <div class="flex gap-3">
+        <button type="submit" class="flex-1 bg-amber-600 text-white py-2 rounded-lg font-semibold hover:bg-amber-700 transition">Login</button>
+        <button type="button" id="toggle" class="px-3 py-2 bg-amber-100 text-amber-700 font-semibold rounded-lg border border-amber-300">Show</button>
+      </div>
+      <p id="message" class="text-sm mt-2 hidden"></p>
+    </form>
+  </main>
+
+  <!-- Volunteer Profile Section (hidden until login success) -->
+  <div id="profileSection" class="hidden w-full max-w-xl bg-white shadow-2xl rounded-xl overflow-hidden border-t-8 border-amber-600 mt-6">
+
+    <header class="bg-amber-600 p-6 text-white text-center">
+      <h1 class="text-3xl font-extrabold mb-1 tracking-wider">सेवा समिति</h1>
+      <p class="text-amber-100 text-xl">श्रीसीता सर्वेश्वरराम मंदिर समिति, रघुनाथपुरम (इंदौर)</p>
+      <p class="text-amber-200 text-sm font-medium">जय सनातन राष्ट्रसेवा संगठन (JSRS) इंदौर</p>
+    </header>
+
+    <main class="p-8 space-y-8">
+      <div class="flex flex-col items-center mb-6">
+        <img src="WhatsApp Image 2025-10-08 at 23.44.38.jpeg" alt="ऋतिक वर्मा" class="w-36 h-36 object-cover rounded-full border-4 border-amber-500 shadow-xl" onerror="this.onerror=null; this.src='https://placehold.co/144x144/FFC107/FFFFFF?text=RV';">
+        <p class="mt-4 text-3xl font-black text-amber-800">ऋतिक वर्मा</p>
+        <p class="text-lg font-medium text-gray-500">आईडी: KATHA-V-0089</p>
+      </div>
+
+      <section class="border border-amber-200 rounded-lg p-6 bg-amber-50/50">
+        <h2 class="text-2xl font-bold text-amber-700 border-b border-amber-300 pb-2 mb-4 flex items-center">
+          व्यक्तिगत विवरण
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-4">
+          <div>
+            <p class="text-sm font-semibold text-gray-500 uppercase">आयु</p>
+            <p class="text-xl font-black text-gray-900">24 वर्ष</p>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-gray-500 uppercase">संपर्क संख्या</p>
+            <p class="text-xl font-black text-gray-900">8319720782</p>
+          </div>
+          <div class="col-span-1 sm:col-span-2">
+            <p class="text-sm font-semibold text-gray-500 uppercase">सेवा स्थान</p>
+            <p class="text-xl font-black text-gray-900">रघुनाथपुरम (खातीपुरा), इंदौर</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="rounded-lg p-6 bg-white shadow-md border-b-2 border-amber-400">
+        <h2 class="text-2xl font-bold text-gray-800 border-b border-gray-200 pb-2 mb-4 flex items-center">सेवा भूमिका</h2>
+        <p class="text-lg font-semibold text-amber-700 mb-4">आतिथ्य और अतिथि प्रबंधन</p>
+        <ul class="list-none space-y-2 text-gray-600 text-base">
+          <li><span class="text-amber-600 font-bold mr-2">•</span>आमंत्रित मेहमानों और गणमान्य व्यक्तियों के लिए प्रवेश और बैठने की व्यवस्था करना।</li>
+          <li><span class="text-amber-600 font-bold mr-2">•</span>भीड़ प्रवाह और पार्किंग समन्वय में सहायता करना।</li>
+          <li><span class="text-amber-600 font-bold mr-2">•</span>24 से 30 अक्टूबर तक कथा के कार्यक्रम के दौरान व्यवस्था बनाए रखना।</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="bg-amber-600/80 p-4 text-center text-sm text-white font-medium">
+      अंतिम अपडेट: <span id="currentDate"></span> | जय श्री राम
+    </footer>
+  </div>
+
+  <script>
+    (function(){
+      const CORRECT = '202509';
+      const form = document.getElementById('loginForm');
+      const pw = document.getElementById('password');
+      const msg = document.getElementById('message');
+      const profile = document.getElementById('profileSection');
+      const loginCard = document.getElementById('loginCard');
+      const toggle = document.getElementById('toggle');
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        if(pw.value === CORRECT){
+          msg.textContent = 'Login successful — welcome!';
+          msg.classList.remove('hidden');
+          msg.classList.add('text-green-600');
+          loginCard.classList.add('hidden');
+          profile.classList.remove('hidden');
+          document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+        } else {
+          msg.textContent = 'Incorrect password. Try again.';
+          msg.classList.remove('hidden');
+          msg.classList.add('text-red-600');
+        }
+      });
+
+      toggle.addEventListener('click', function(){
+        const isText = pw.type === 'text';
+        pw.type = isText ? 'password' : 'text';
+        toggle.textContent = isText ? 'Show' : 'Hide';
+      });
+    })();
+  </script>
+</body>
+</html>
